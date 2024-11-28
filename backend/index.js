@@ -9,13 +9,15 @@ require('dotenv').config();
 require('./Models/db');
 const PORT = process.env.PORT || 8080;
 
-// CORS setup for specific frontend origin
+// CORS middleware should be before routes
 app.use(cors({
-  origin: 'https://authentication-app-ui-sable.vercel.app', // Replace with your actual frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: 'https://authentication-app-ui-sable.vercel.app', // Replace with your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow OPTIONS method
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 
+// Test endpoint to check CORS
 app.get('/ping', (req, res) => {
   res.send('PONG');
 });
