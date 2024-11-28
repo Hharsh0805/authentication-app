@@ -1,29 +1,28 @@
-
 *,
 ::before,
-::after{
+::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-label{
+label {
   font-size: 20px;
 }
 
 html,
-body{
+body {
   height: 100%;
   width: 100%;
 }
 
-body{
+body {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.container{
+.container {
   background-color: #FFF;
   padding: 32px 48px;
   border-radius: 10px;
@@ -32,21 +31,22 @@ body{
   box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
 }
 
-.container > h1{
+.container > h1 {
   margin-bottom: 20px;
 }
 
-.container > form{
+.container > form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.container div{
+
+.container div {
   display: flex;
   flex-direction: column;
 }
 
-.container input{
+.container input {
   width: 100%;
   font-size: 20px;
   padding: 10px;
@@ -55,18 +55,25 @@ body{
   border-bottom: 1px solid black;
 }
 
-.container input::placeholder{
-  font-size: 12px;
-  font-style: italic;
+.container input::placeholder {
+  font-size: 15px;
+  font-style: normal;
 }
 
-button{
-  background-color: purple;
+button {
+  background: linear-gradient(to right, #6a11cb, #c625fc); /* Left-to-right gradient */
   border: none;
   font-size: 20px;
   color: white;
+  font-family: 'Times New Roman', Times, serif;
   border-radius: 5px;
   padding: 10px;
   cursor: pointer;
   margin: 10px 0;
+  transition: background 0.5s, box-shadow 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(to right, #9b3d3d, #bc5757); /* Right-to-left gradient */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
