@@ -9,22 +9,29 @@ require('dotenv').config();
 require('./Models/db');
 const PORT = process.env.PORT || 8080;
 
-// CORS middleware should be applied before defining routes
-app.use(cors({
-  origin: 'https://authentication-app-ui-sable.vercel.app', // Replace with your frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow OPTIONS method
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true // If you're using cookies or authorization headers
-}));
+// CORS configuration
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || 'https://authentication-app-ui-sable.vercel.app',
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
 
 app.get('/ping', (req, res) => {
-  res.send('PONG');
+    res.send('PONG');
 });
 
-app.use(bodyParser.json());
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
 
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Something went wrong!' });
+});
+
 app.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
+    console.log(`Server is running on ${PORT}`)
 });
